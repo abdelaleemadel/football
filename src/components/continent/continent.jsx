@@ -17,7 +17,6 @@ function Continent({ continent }) {
             <p className='text-center mx-auto text-white fw-bold fs-3 w-50 '>{continent.name}</p>
         </Link>
 
-
     </>);
 }
 

@@ -2,19 +2,24 @@
   background-color: #5788E4;
 }
 
+:root {
+  --chess1-bg: #4268B0;
+  --chess2-bg: #3F62A4;
+}
+
 /* Chess Background */
 .chess1-bg {
-  background-color: #4268B0;
+  background-color: var(--chess1-bg);
 }
 
 .chess2-bg {
-  background-color: #3F62A4;
+  background-color: var(--chess2-bg);
 }
 
 .chess {
 
   div:nth-child(4n+1),
-  div:nth-child(4n+0) {
+  div:nth-child(4n+4) {
     @extend .chess1-bg;
   }
 
@@ -22,5 +27,42 @@
   div:nth-child(4n+2),
   div:nth-child(4n+3) {
     @extend .chess2-bg;
+  }
+}
+
+
+/* Media Query */
+
+/* MD screen */
+@media screen and (min-width: 768px) {
+  .chess {
+    div:nth-child(odd) {
+      background-color: var(--chess1-bg);
+    }
+
+    div:nth-child(even) {
+      background-color: var(--chess2-bg);
+    }
+  }
+}
+
+
+/* Large Screen */
+@media screen and (min-width:992px) {
+  .chess {
+
+    div:nth-child(8n+1),
+    div:nth-child(8n+3),
+    div:nth-child(8n+6),
+    div:nth-child(8n+8) {
+      background-color: var(--chess1-bg);
+    }
+
+    div:nth-child(8n+2),
+    div:nth-child(8n+4),
+    div:nth-child(8n+5),
+    div:nth-child(8n+7) {
+      background-color: var(--chess2-bg);
+    }
   }
 }

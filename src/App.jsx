@@ -2,7 +2,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.scss';
 import Home from './components/home/home';
 import Layout from './components/Layout/Layout';
-import Countries from './components/Countries/Countries';
+import Countries from './components/countries/Countries';
 import Players from './components/Players/Players';
 
 const routers = createBrowserRouter([
@@ -10,7 +10,8 @@ const routers = createBrowserRouter([
     path: '', element: < Layout />, children: [
       { index: true, element: <Home /> },
       { path: 'countries/:continentId', element: <Countries /> },
-      { path: 'players', element: <Players /> }
+      { path: 'players/:countryId', element: <Players /> },
+
     ]
   }
 ])
