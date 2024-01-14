@@ -1,0 +1,26 @@
+.main-bg {
+  background-color: #5788E4;
+}
+
+/* Chess Background */
+.chess1-bg {
+  background-color: #4268B0;
+}
+
+.chess2-bg {
+  background-color: #3F62A4;
+}
+
+.chess {
+
+  div:nth-child(4n+1),
+  div:nth-child(4n+0) {
+    @extend .chess1-bg;
+  }
+
+
+  div:nth-child(4n+2),
+  div:nth-child(4n+3) {
+    @extend .chess2-bg;
+  }
+}
