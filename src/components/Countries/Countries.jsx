@@ -13,7 +13,6 @@ function Countries() {
 
     let { isLoading, isError, data } = useQuery('allCountries', getCountries);
     let countriesByContinent = data?.data.filter(country => country.continent_id == continentId);
-    console.log(countriesByContinent);
     return (<>
         <div className="main-bg main-vh-100">
             <div className="container row mx-auto chess">
