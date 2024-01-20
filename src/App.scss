@@ -16,7 +16,8 @@
   background-color: var(--chess2-bg);
 }
 
-.chess {
+.chess,
+.main-chess {
 
   div:nth-child(4n+1),
   div:nth-child(4n+4) {

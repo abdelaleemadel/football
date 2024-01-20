@@ -1,30 +1,23 @@
 import axios from "axios";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-/* import * as allPlayers from '../../assets/players'; */
 import Player from "../Player/Player";
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 function Players() {
-
+    useSelector(state => { console.log(state); })
     const { countryName } = useParams();
     console.log(countryName);
-    /* import all from `./../../assets/players/${countryName}.txt`;
-    console.log(all) */
-    /*  const [country, setCountry] = useState(null);
-     useEffect(() => {
-         import(`./../../assets/players/${countryName}.txt`).then(module => setCountry(() => module.default)).catch(error => {
-             console.log(`Failed to load module ${error}`);
-         })
-     }, [countryName]) */
+
 
 
     function getPlayers() {
-
-        return axios.get('/players/Germany.txt');
+        return axios.get(`/players/${countryName}.txt`);
     }
 
-    let { isLoading, isError, data } = useQuery('allPlayers', getPlayers);
+    let { isLoading, isError, data } = useQuery(`${countryName}Players`, getPlayers, {
+        refetchOnMount: false
+    });
     let playersByCountry = data?.data.slice(0, 20);
     console.log(playersByCountry);
     return (<>
