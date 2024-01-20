@@ -10,7 +10,7 @@ const routers = createBrowserRouter([
     path: '', element: < Layout />, children: [
       { index: true, element: <Home /> },
       { path: 'countries/:continentId', element: <Countries /> },
-      { path: 'players/:countryId', element: <Players /> },
+      { path: 'players/:countryName', element: <Players /> },
 
     ]
   }
