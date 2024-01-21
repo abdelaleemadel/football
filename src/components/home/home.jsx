@@ -7,7 +7,7 @@ function Home() {
         {/* Showing All continents  */}
         <div className="main-bg min-vh-100 " >
             <div className='container row mx-auto main-chess'>
-                {continents.map(continent => <div className="col-6 justify-content-center text-center" key={continent.id}> <Continent continent={continent}></Continent></div>)}
+                {continents.map(continent => <div className=" col-12 col-sm-6 justify-content-center text-center" key={continent.id}> <Continent continent={continent}></Continent></div>)}
             </div>
         </div>
 

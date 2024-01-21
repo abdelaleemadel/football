@@ -16,8 +16,7 @@ function Countries() {
     }
 
     let { displayed, initial, final } = useSelector(state => state.pagination);
-    console.log(displayed);
-    console.log(initial, final);
+
     let { data } = useQuery('allCountries', getCountries, {
         refetchOnMount: false
     });
@@ -33,26 +32,25 @@ function Countries() {
     }, [continentId, dispatch])
     return (<>
         <div className="main-bg main-vh-100">
-            <nav aria-label="...">
-                <ul className="pagination">
-                    <li className="page-item  ">  {/* disabled */}
-                        <button className="page-link" disabled={initial < ItemsPerPage}
-                            onClick={() => { dispatch(prev({ display: countriesByContinent })) }}>Previous</button>
-                    </li>
-                    {pages}
-                    <li className="page-item">
-                        <button className="page-link" disabled={countriesByContinent?.length <= final}
-                            onClick={() => { dispatch(next({ display: countriesByContinent })) }}>Next</button>
-                    </li>
-                </ul>
-            </nav>
+
             <div className="container row mx-auto chess">
                 {displayed.length ?
                     displayed.map(country => <div className="col-6 col-md-4 col-lg-3  py-4" key={country.id}> <Country country={country}></Country></div>)
                     : initialCountries?.map(country => <div className="col-6 col-md-4 col-lg-3  py-4" key={country.id}> <Country country={country}></Country></div>)}
             </div>
-
-
+            <nav aria-label="..." className="my-5 overflow-auto">
+                <ul className="pagination flex justify-content-center">
+                    <li className={`page-item ${initial < ItemsPerPage ? 'disabled' : ''}`}>  {/* disabled */}
+                        <button className="page-link" disabled={initial < ItemsPerPage}
+                            onClick={() => { dispatch(prev({ display: countriesByContinent })) }}>Previous</button>
+                    </li>
+                    {pages}
+                    <li className={`page-item ${countriesByContinent?.length <= final ? 'disabled' : ''}`}>
+                        <button className="page-link"
+                            onClick={() => { dispatch(next({ display: countriesByContinent })) }}>Next</button>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </>);
 }
