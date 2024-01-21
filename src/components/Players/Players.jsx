@@ -3,9 +3,12 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import Player from "../Player/Player";
 import { useEffect, useRef, useState } from "react";
-
+import Sort from "../Sort/Sort";
+import { startSorting } from "../../Redux/sortSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function Players() {
+    const dispatch = useDispatch();
     let ItemsPerPage = 30;
     const myRef = useRef();
     const { countryName } = useParams();
@@ -17,8 +20,9 @@ function Players() {
     let { data } = useQuery(`${countryName}Players`, getPlayers, {
         refetchOnMount: false
     });
-    let playersByCountry = data?.data
-    let initialPlayersByCountry = playersByCountry?.slice(0, NumOfPlayers);
+    let playersByCountry = data?.data;
+    let { displayed } = useSelector(state => state.sort)
+    let initialPlayersByCountry = displayed?.slice(0, NumOfPlayers);
 
 
     useEffect(() => {
@@ -40,9 +44,13 @@ function Players() {
         };
     }, [NumOfPlayers, ItemsPerPage]);
 
+    useEffect(() => {
+        dispatch(startSorting({ display: playersByCountry }))
+    }, [playersByCountry, dispatch])
     return (<>
 
         <div className="main-bg overflow-auto vh-100" ref={myRef}>
+            <Sort />
 
             <div className="container row mx-auto chess add-more">
                 {initialPlayersByCountry?.map(player => <div className="col-6 col-md-4 col-lg-3 py-4 d-flex flex-wrap justify-content-center align-items-center" key={player.player_id}> <Player player={player}></Player></div>)}
