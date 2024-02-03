@@ -6,8 +6,8 @@ export default function Sort() {
     const dispatch = useDispatch();
 
     return (
-        <div className="dropdown container  text-end my-3">
-            <button className="btn btn-light dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <div className="dropdown text-end my-3">
+            <button className="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Sort Players
             </button>
             <ul className="dropdown-menu">

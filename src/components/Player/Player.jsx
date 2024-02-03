@@ -1,9 +1,8 @@
-import { Link, useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 
 
 export default function Player({ player }) {
-    let params = useParams();
     return (<>
 
 

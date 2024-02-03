@@ -48,12 +48,13 @@
 
 /* Button */
 .main-button {
-  background-color: white;
-  color: #2f50c6 !important;
-  border: #2f50c6 2px solid !important;
-  padding: 3% 3%;
-  /*   @extend .gradient-bg;
- */
+  background-color: var(--color-500);
+  color: white;
+
+  &:hover {
+    background-color: var(--color-700);
+    color: white;
+  }
 }
 
 .player-card {

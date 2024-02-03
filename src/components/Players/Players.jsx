@@ -7,6 +7,7 @@ import Sort from "../Sort/Sort";
 import { startSorting } from "../../Redux/sortSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Search from "../Search/Search";
+import RandomPlayer from "../RandomPlayer/RandomPlayer";
 
 function Players() {
     const dispatch = useDispatch();
@@ -14,18 +15,21 @@ function Players() {
     const myRef = useRef();
     const { countryName } = useParams();
     let [NumOfPlayers, setNumOfPlayers] = useState(ItemsPerPage)
-    function getPlayers() {
+
+    function getPlayers(countryName) {
         return axios.get(`/players/${countryName}.txt`);
     }
 
-    let { data } = useQuery(`${countryName}Players`, getPlayers, {
-        refetchOnMount: false
-    });
+    let { data } = useQuery(`${countryName}Players`, () => getPlayers(countryName),
+        {
+            refetchOnMount: false,
+            staleTime: Infinity
+        });
     let playersByCountry = data?.data;
     let { displayed } = useSelector(state => state.sort)
     let initialPlayersByCountry = displayed?.slice(0, NumOfPlayers);
 
-
+    /* Display More while scrolling */
     useEffect(() => {
 
         const handleScroll = () => {
@@ -51,9 +55,9 @@ function Players() {
     return (<>
 
         <div className="main-bg overflow-auto vh-100 py-3" ref={myRef}>
-            <div className="d-flex container">
-                <Search></Search>
-
+            <div className="d-flex container gap-3  justify-content-between align-items-center ">
+                <Search ></Search>
+                <RandomPlayer fetchCountryPlayers={getPlayers}></RandomPlayer>
                 <Sort />
             </div>
 
