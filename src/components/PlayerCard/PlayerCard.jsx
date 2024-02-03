@@ -5,7 +5,6 @@ import RandomPlayer from "../RandomPlayer/RandomPlayer";
 
 function PlayerCard() {
     const api_key = process.env.REACT_APP_API_KEY;
-    console.log(api_key);
     const { playerId, countryName } = useParams();
 
     function getPlayers() {
