@@ -1,10 +1,10 @@
 .main-bg {
-  background-color: #5788E4;
+  background-color: #1d264e;
 }
 
 :root {
-  --chess1-bg: #4268B0;
-  --chess2-bg: #3F62A4;
+  --chess1-bg: #2d44a0;
+  --chess2-bg: #3a66d6;
 }
 
 /* Chess Background */
@@ -40,6 +40,29 @@
   }
 }
 
+
+/* Background gradient */
+.gradient-bg {
+  background: linear-gradient(90deg, rgb(111, 161, 235), rgb(56, 99, 216));
+}
+
+/* Button */
+.main-button {
+  background-color: white;
+  color: #2f50c6 !important;
+  border: #2f50c6 2px solid !important;
+  padding: 3% 3%;
+  /*   @extend .gradient-bg;
+ */
+}
+
+.player-card {
+  @extend .gradient-bg;
+  -webkit-box-shadow: 10px 10px 18px 10px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 10px 10px 18px 10px rgba(0, 0, 0, 1);
+  box-shadow: 10px 10px 18px 10px rgba(0, 0, 0, 1);
+}
+
 /* Media Query */
 /* SM SCREEN */
 
@@ -72,10 +95,6 @@
   }
 }
 
-/* 
-button:disabled {
-  background-color: gray;
-} */
 
 /* Large Screen */
 @media screen and (min-width:992px) {

@@ -1,22 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-let initialState = { displayed: [] }
+let initialState = { displayed: [], notfiltered: [] }
 const sortSlice = createSlice({
     name: 'sortSlice',
     initialState,
     reducers: {
         startSorting: (state, action) => {
             let { display } = action.payload;
+            state.notfiltered = display;
             state.displayed = display;
-            console.log(state.displayed?.slice(0, 25));
+        },
+        deSort: (state) => {
+            state.displayed = state.notfiltered;
         },
         sortAlphabetical: (state, action) => {
             let { order } = action.payload;
-            console.log('hello');
-            console.log(state.displayed?.slice(0, 25));
-            state.displayed = state.displayed.toSorted((a, b) => {
-                let nameA = a["display_name"].toLowerCase();
-                let nameB = b["display_name"].toLowerCase();
+
+            state.displayed = state.displayed?.toSorted((a, b) => {
+                let nameA = a["display_name"]?.toLowerCase();
+                let nameB = b["display_name"]?.toLowerCase();
                 if (nameA < nameB) return -1 * order;
                 if (nameA > nameB) return 1 * order;
                 return 0;
@@ -24,7 +26,6 @@ const sortSlice = createSlice({
         },
         sortAge: (state, action) => {
             let { order } = action.payload;
-            console.log(`action:`, action, typeof order);
 
             state.displayed = state.displayed?.toSorted((a, b) => {
                 let birthdateA = a["birthdate"]?.split('/').reverse().join('/');
@@ -37,6 +38,12 @@ const sortSlice = createSlice({
                 if (birthdateA > birthdateB) return 1 * order;
                 return 0;
             })
+        },
+
+        searchPlayers: (state, action) => {
+            const { searchTerm } = action.payload;
+            console.log(action.payload);
+            state.displayed = state.notfiltered.filter(player => player?.display_name?.toLowerCase().includes(searchTerm?.toLowerCase()))
         }
 
 
@@ -44,4 +51,4 @@ const sortSlice = createSlice({
 })
 
 export const sortReducer = sortSlice.reducer;
-export const { startSorting, sortAlphabetical, sortAge } = sortSlice.actions;
+export const { startSorting, sortAlphabetical, sortAge, searchPlayers, deSort } = sortSlice.actions;
