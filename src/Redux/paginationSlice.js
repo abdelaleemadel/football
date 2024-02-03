@@ -33,7 +33,7 @@ const paginationSlice = createSlice({
         },
         searchCountries: (state, action) => {
             const { searchTerm } = action.payload;
-            state.countries = state.notfiltered.filter(country => country?.name?.toLowerCase().includes(searchTerm?.toLowerCase()));
+            state.countries = state.notfiltered?.filter(country => country?.name?.toLowerCase().includes(searchTerm?.toLowerCase()));
             state.displayed = state.countries.slice(0, state.itemsPerPage)
         }
 

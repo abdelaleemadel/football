@@ -42,8 +42,7 @@ const sortSlice = createSlice({
 
         searchPlayers: (state, action) => {
             const { searchTerm } = action.payload;
-            console.log(action.payload);
-            state.displayed = state.notfiltered.filter(player => player?.display_name?.toLowerCase().includes(searchTerm?.toLowerCase()))
+            state.displayed = state.notfiltered?.filter(player => player?.display_name?.toLowerCase().includes(searchTerm?.toLowerCase()))
         }
 
 
