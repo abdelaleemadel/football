@@ -1,24 +1,22 @@
-import axios from "axios";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import Player from "../Player/Player";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Sort from "../Sort/Sort";
 import { startSorting } from "../../Redux/sortSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Search from "../Search/Search";
 import RandomPlayer from "../RandomPlayer/RandomPlayer";
+import { fetchContext } from "../../contexts/fetchContext";
 
 function Players() {
     const dispatch = useDispatch();
     let ItemsPerPage = 30;
     const myRef = useRef();
     const { countryName } = useParams();
-    let [NumOfPlayers, setNumOfPlayers] = useState(ItemsPerPage)
+    let [NumOfPlayers, setNumOfPlayers] = useState(ItemsPerPage);
+    const getPlayers = useContext(fetchContext)
 
-    function getPlayers(countryName) {
-        return axios.get(`/players/${countryName}.txt`);
-    }
 
     let { data } = useQuery(`${countryName}Players`, () => getPlayers(countryName),
         {
@@ -57,7 +55,7 @@ function Players() {
         <div className="main-bg overflow-auto vh-100 py-3" ref={myRef}>
             <div className="d-flex container gap-3  justify-content-between align-items-center ">
                 <Search ></Search>
-                <RandomPlayer fetchCountryPlayers={getPlayers}></RandomPlayer>
+                <RandomPlayer ></RandomPlayer>
                 <Sort />
             </div>
 

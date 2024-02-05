@@ -11,7 +11,16 @@ import { Provider } from 'react-redux';
 import { store } from './Redux/Store';
 
 
-let queryClient = new QueryClient();
+let queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      refetchOnMount: false,
+    },
+  },
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

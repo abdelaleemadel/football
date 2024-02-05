@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { fetchContext } from "../../contexts/fetchContext";
 
 
-function RandomPlayer({ fetchCountryPlayers }) {
+function RandomPlayer() {
 
     const getPlayers = useContext(fetchContext)
     const { countryName } = useParams();
@@ -17,14 +17,14 @@ function RandomPlayer({ fetchCountryPlayers }) {
         });
 
     const players = playersData?.data;
-
     function getRandomPlayer() {
         let player = null;
         do {
 
             const index = Math.floor(Math.random() * (players?.length));
             player = players[index];
-        } while (players && (!player || player?.player_id === randomPlayer));
+            console.log(player?.image_path);
+        } while (players && (!player || player?.player_id === randomPlayer || player?.image_path.includes('placeholder')));
 
         setRandomPlayer(player?.player_id);
         navigate(`/players/${countryName}/${player?.player_id}`)
@@ -32,7 +32,7 @@ function RandomPlayer({ fetchCountryPlayers }) {
 
 
     return (<>
-        <div className="my-3">
+        <div className="my-3 text-center">
             <button className="btn main-button text-nowrap" onClick={getRandomPlayer}> Random Player
             </button></div></>);
 }

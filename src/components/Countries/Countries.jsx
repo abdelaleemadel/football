@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import allCountries from './countries.txt';
 import Country from "../country/country";
 import { useEffect } from "react";
@@ -11,16 +11,17 @@ import Search from "../Search/Search";
 
 function Countries() {
     let dispatch = useDispatch();
+
     const { continentId } = useParams();
+    const allowedContinentIds = ["1", "2", "3", "4", "6", "7"];
+
     function getCountries() {
         return axios.get(allCountries);
     }
 
     let { displayed, countries, initial, final, itemsPerPage } = useSelector(state => state.pagination);
 
-    let { data } = useQuery('allCountries', getCountries, {
-        refetchOnMount: false
-    });
+    let { data } = useQuery('allCountries', getCountries);
 
 
 
@@ -33,6 +34,10 @@ function Countries() {
     useEffect(() => {
         dispatch(start({ display: data?.data, continentId }))
     }, [dispatch, data, continentId])
+
+    /* redirect to not found page when wrong Id is entered */
+    if (!allowedContinentIds.includes(continentId)) return <Navigate to="/notfound" replace />
+
     return (<>
         <div className="main-bg main-vh-100">
             <div className="container overflow-auto d-flex">

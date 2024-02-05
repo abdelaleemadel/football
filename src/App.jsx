@@ -6,6 +6,7 @@ import Countries from './components/Countries/Countries';
 import Players from './components/Players/Players';
 import PlayerCard from './components/PlayerCard/PlayerCard';
 import FetchContextProvider from './contexts/fetchContext';
+import Loading from './components/Loading/Loading';
 
 const routers = createBrowserRouter([
   {
@@ -21,7 +22,9 @@ const routers = createBrowserRouter([
 function App() {
   return (
     <>
+
       <FetchContextProvider>
+        <Loading></Loading>
         <RouterProvider router={routers} />
       </FetchContextProvider>
     </>

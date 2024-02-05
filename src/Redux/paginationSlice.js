@@ -6,6 +6,7 @@ const paginationSlice = createSlice({
     reducers: {
         start: (state, action) => {
             const { display, continentId } = action.payload;
+            // eslint-disable-next-line eqeqeq
             state.countries = display?.filter(country => country.continent_id == continentId);
             state.notfiltered = state.countries;
             state.displayed = state.countries?.slice(state.initial, state.final);
@@ -34,7 +35,7 @@ const paginationSlice = createSlice({
         searchCountries: (state, action) => {
             const { searchTerm } = action.payload;
             state.countries = state.notfiltered?.filter(country => country?.name?.toLowerCase().includes(searchTerm?.toLowerCase()));
-            state.displayed = state.countries.slice(0, state.itemsPerPage)
+            state.displayed = state.countries?.slice(0, state.itemsPerPage)
         }
     }
 })
