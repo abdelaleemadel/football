@@ -1,10 +1,13 @@
-.main-bg {
-  background-color: #1d264e;
-}
-
 :root {
   --chess1-bg: #2d44a0;
   --chess2-bg: #3a66d6;
+  --main-bg: #1d264e;
+  background-color: var(--main-bg);
+
+}
+
+.main-bg {
+  background-color: var(--main-bg);
 }
 
 /* Chess Background */

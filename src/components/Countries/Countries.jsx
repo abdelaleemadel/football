@@ -39,7 +39,7 @@ function Countries() {
     if (!allowedContinentIds.includes(continentId)) return <Navigate to="/notfound" replace />
 
     return (<>
-        <div className="main-bg main-vh-100">
+        <div className="main-bg min-vh-100">
             <div className="container overflow-auto d-flex">
                 <Search></Search>
             </div>
