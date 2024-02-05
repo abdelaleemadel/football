@@ -18,11 +18,7 @@ function Players() {
     const getPlayers = useContext(fetchContext)
 
 
-    let { data } = useQuery(`${countryName}Players`, () => getPlayers(countryName),
-        {
-            refetchOnMount: false,
-            staleTime: Infinity
-        });
+    let { data } = useQuery(`${countryName}Players`, () => getPlayers(countryName));
     let playersByCountry = data?.data;
     let { displayed } = useSelector(state => state.sort)
     let initialPlayersByCountry = displayed?.slice(0, NumOfPlayers);
@@ -52,14 +48,14 @@ function Players() {
     }, [playersByCountry, dispatch])
     return (<>
 
-        <div className="main-bg overflow-auto vh-100 py-3" ref={myRef}>
-            <div className="d-flex container gap-3  justify-content-between align-items-center ">
+        <div className="main-bg overflow-auto vh-100 pb-2 container hide-scrollbar" ref={myRef}>
+            <div className="d-flex  gap-3 justify-content-between align-items-center ">
                 <Search ></Search>
                 <RandomPlayer ></RandomPlayer>
                 <Sort />
             </div>
 
-            <div className="container row mx-auto chess add-more">
+            <div className="container row gx-0 mx-auto chess add-more">
 
                 {initialPlayersByCountry?.map(player => <div className="col-6 col-md-4 col-lg-3 " key={player.player_id}> <Player player={player} ></Player></div>)}
             </div>

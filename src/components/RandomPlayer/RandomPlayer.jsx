@@ -7,7 +7,8 @@ import { fetchContext } from "../../contexts/fetchContext";
 function RandomPlayer() {
 
     const getPlayers = useContext(fetchContext)
-    const { countryName } = useParams();
+    const { countryName, continentId } = useParams();
+
     const [randomPlayer, setRandomPlayer] = useState(null);
     const navigate = useNavigate();
     let { data: playersData } = useQuery(`${countryName}Players`, () => getPlayers(countryName),
@@ -27,7 +28,7 @@ function RandomPlayer() {
         } while (players && (!player || player?.player_id === randomPlayer || player?.image_path.includes('placeholder')));
 
         setRandomPlayer(player?.player_id);
-        navigate(`/players/${countryName}/${player?.player_id}`)
+        navigate(`/continents/${continentId}/countries/${countryName}/players/${player?.player_id}`)
     }
 
 

@@ -8,11 +8,12 @@ import OC from '../../../src/assets/images/continents/OC.svg';
 import AS from '../../../src/assets/images/continents/AS.svg';
 import { Link } from 'react-router-dom';
 
+
 function Continent({ continent }) {
     const images = { EU, AF, SA, NA, OC, AS }
-    console.log(continent.code);
+
     return (<>
-        <Link to={`/countries/${continent.id}`} className='text-decoration-none'>
+        <Link to={`/continents/${continent.id}`} className='text-decoration-none'>
             <img src={images[continent.code]} alt={continent.name} className=' w-50' />
             <p className='text-center mx-auto text-white fw-bold fs-3 w-50 '>{continent.name}</p>
         </Link>

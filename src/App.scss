@@ -1,9 +1,5 @@
-:root {
-  --chess1-bg: #2d44a0;
-  --chess2-bg: #3a66d6;
-  --main-bg: #1d264e;
-  background-color: var(--main-bg);
-
+#root {
+  background-color: var(--main-bg)
 }
 
 .main-bg {
@@ -17,6 +13,25 @@
 
 .chess2-bg {
   background-color: var(--chess2-bg);
+}
+
+.hide-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.pointer-cursor {
+  cursor: pointer;
+}
+
+.context-menu {
+  cursor: context-menu;
 }
 
 .chess {

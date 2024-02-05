@@ -37,7 +37,6 @@ function PlayerCard() {
 
     let team = teamData?.data?.data;
 
-    console.log(player);
 
     return (<>
         <div className="min-vh-100 main-bg d-flex flex-column justify-content-center align-items-center">
